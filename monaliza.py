@@ -94,7 +94,8 @@ with col2:
             #"https://geoservices.big.go.id/rbi/rest/services/INDEKS/RBI_StatusBatas_ProvKabKota/MapServer/layers?f=pjson",
             #"https://raw.githubusercontent.com/rijdz/folium-maps-jakarta/master/JK_regencies.json",
             #"https://geoservices.big.go.id/rbi/rest/services/BATASWILAYAH/RBI_2014_25K_ACEH01_BATASWILAYAH/MapServer/2?f=pjson",
-            "https://raw.githubusercontent.com/ans-4175/peta-indonesia-geojson/master/indonesia-prov.geojson",
+            # "https://raw.githubusercontent.com/ans-4175/peta-indonesia-geojson/master/indonesia-prov.geojson",
+                "https://code.highcharts.com/mapdata/countries/id/id-all.geo.json",
             verify=False).json()
         
         m = folium.Map(location=[-6.2, 120], zoom_start=4)
