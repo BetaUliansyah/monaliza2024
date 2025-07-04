@@ -84,21 +84,21 @@ with col2:
     tab1, tab2, tab3, tab4 = st.tabs(["peta", "grafik", "metadata", "unduh"])
     with tab1:
         with st.spinner('digambar dulu ya... '):
-            geojson_data = gpd.read_file("indonesia-prov.geojson")
+            geojson_data = gpd.read_file("indonesia_38_provinsi.geojson")
             
         st.markdown(geojson_data.head())
         bounds = geojson_data.total_bounds
         [y_map, x_map] = [geojson_data.centroid.y.mean(), geojson_data.centroid.x.mean()]
         m = folium.Map(location=[y_map, x_map],  tiles = 'CartoDB positron', zoom_start=4)
         # m.fit_bounds([[bounds[0],bounds[1]], [bounds[2],bounds[3]]])
-        merged_gdf = geojson_data.merge(base_df, left_on='Propinsi', right_on='PETA_REF', how='outer')
+        merged_gdf = geojson_data.merge(base_df, left_on='kode_prov', right_on='kode_pemda', how='outer')
         print(merged_gdf.head())
         folium.Choropleth(
             geo_data=merged_gdf,
             name="choropleth",
             data=merged_gdf,
-            columns= ["PETA_REF","PAD"],
-            key_on="feature.id",
+            columns= ["Provinsi","2010"],
+            key_on="feature.properties.kode_prov",
             fill_color="YlGn",
             fill_opacity=0.7,
             line_opacity=0.2,
